@@ -24,7 +24,7 @@ Deployment Preparation
 - **Model Explainability & Error Analysis** documented in `docs/model_explainability.md`
 - **Future Data Handling Review & Verification** documented in `docs/production_audit.md`
 - **Model Selection Validation** documented in `docs/final_model_decision.md`
-- **Production Deployment Configuration**: Created `Dockerfile.api`, `Dockerfile.streamlit`, `.dockerignore`, split production dependencies (`requirements-api.txt`, `requirements-streamlit.txt`), preserved development setup in `requirements-dev.txt`, and documented deployment steps in `docs/deployment.md`.
+- **Production Deployment Configuration**: Created `Dockerfile.api`, `Dockerfile.streamlit`, `.dockerignore`, split production dependencies (`requirements-api.txt`, `requirements-streamlit.txt` using scikit-learn 1.9.0 to match training), preserved development setup in `requirements-dev.txt`, and documented deployment steps in `docs/deployment.md`.
 
 ## Currently Working On
 - Handover and user review

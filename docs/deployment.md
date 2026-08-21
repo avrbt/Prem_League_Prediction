@@ -25,7 +25,7 @@ Jupyter Notebook kernels, extensions, and web assets pull in over 60+ heavy deve
 ### Version Compatibility Matrix
 - **Python Version**: We use the official `python:3.11-slim` base image.
 - **NumPy Version**: Pinned to `numpy>=1.26.4,<2.0.0`. This ensures compatibility with Python 3.11 and the scientific computing stack, avoiding installation errors seen with uncompiled pre-release versions.
-- **scikit-learn Version**: Pinned to `scikit-learn==1.4.2` to ensure the serialized Logistic Regression pipeline (`models/final_model.pkl`) loads correctly without binary serialization mismatches.
+- **scikit-learn Version**: Pinned to `scikit-learn==1.9.0` (matching the training environment) to prevent unpickling version warnings/inconsistencies when loading `models/final_model.pkl`.
 
 ---
 
