@@ -8,6 +8,12 @@ from src.feature_engineering import generate_match_features
 class MatchPredictor:
     def __init__(self):
         self.model = joblib.load(MODEL_PATH)
+        try:
+            classifier = self.model.named_steps["classifier"]
+            if not hasattr(classifier, "multi_class"):
+                classifier.multi_class = "auto"
+        except Exception:
+            pass
         self.df = load_historical_data()
         self.teams = sorted(list(set(self.df["HomeTeam"]) | set(self.df["AwayTeam"])))
 

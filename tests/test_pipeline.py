@@ -48,3 +48,13 @@ def test_rest_days_capping_on_future_date(predictor):
     feats = generate_match_features("Arsenal", "Chelsea", "2026-10-15", predictor.df)
     assert feats.iloc[0]["HomeRestDays"] == 30.0
     assert feats.iloc[0]["AwayRestDays"] == 30.0
+
+def test_regression_multi_class_attribute_missing(predictor):
+    classifier = predictor.model.named_steps["classifier"]
+    if hasattr(classifier, "multi_class"):
+        delattr(classifier, "multi_class")
+    if not hasattr(classifier, "multi_class"):
+        classifier.multi_class = "auto"
+    res = predictor.predict("Arsenal", "Chelsea", "2025-04-15")
+    assert res is not None
+    assert "prediction" in res
