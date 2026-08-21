@@ -63,16 +63,31 @@ st.markdown("""
 st.markdown("<h1 class='main-title'>⚽ Premier League Match Outcome Predictor</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-title'>Serious pre-match statistical prediction engine</p>", unsafe_allow_html=True)
 
-@st.cache_resource
-def load_predictor():
-    return MatchPredictor()
+import requests
 
+API_URL = os.environ.get("API_URL", "https://prem-league-prediction.onrender.com")
+
+use_api = False
+teams = []
 try:
-    predictor = load_predictor()
-    teams = predictor.teams
-except Exception as e:
-    st.error(f"Error loading prediction engine: {e}")
-    st.stop()
+    response = requests.get(f"{API_URL}/teams", timeout=3)
+    if response.status_code == 200:
+        teams = response.json()["teams"]
+        use_api = True
+except Exception:
+    pass
+
+if not use_api:
+    @st.cache_resource
+    def load_predictor():
+        return MatchPredictor()
+
+    try:
+        predictor = load_predictor()
+        teams = predictor.teams
+    except Exception as e:
+        st.error(f"Error loading prediction engine: {e}")
+        st.stop()
 
 # Layout
 col1, col2 = st.columns(2)
@@ -90,7 +105,20 @@ match_date = st.date_input("📅 Select Match Date", datetime.now().date())
 if st.button("Predict Match Outcome", use_container_width=True):
     try:
         # Run Prediction
-        pred_res = predictor.predict(home_team, away_team, str(match_date))
+        if use_api:
+            payload = {
+                "home_team": home_team,
+                "away_team": away_team,
+                "match_date": str(match_date)
+            }
+            res = requests.post(f"{API_URL}/predict", json=payload, timeout=10)
+            if res.status_code == 200:
+                pred_res = res.json()
+            else:
+                detail = res.json().get("detail", "API prediction failed.")
+                raise ValueError(detail)
+        else:
+            pred_res = predictor.predict(home_team, away_team, str(match_date))
         
         if pred_res.get("is_historical_simulation"):
             st.warning(pred_res["warning"])
