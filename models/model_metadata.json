@@ -1,7 +1,7 @@
 {
-    "model_name": "Calibrated XGBoost Classifier",
-    "model_type": "XGBClassifier + CalibratedClassifierCV",
-    "training_date": "2026-08-22 02:08:14",
+    "model_name": "Logistic Regression Classifier",
+    "model_type": "StandardScaler + LogisticRegression",
+    "training_date": "2026-08-22 02:13:03",
     "dataset_date_range": "2000-08-19 to 2025-05-05",
     "number_training_samples": 7745,
     "number_test_samples": 1635,
@@ -23,10 +23,10 @@
         "HomeRestDays",
         "AwayRestDays"
     ],
-    "accuracy": 0.5187,
-    "macro_f1": 0.3697,
-    "weighted_f1": 0.44,
-    "log_loss": 1.0,
+    "accuracy": 0.5400611620795107,
+    "macro_f1": 0.397650691367932,
+    "weighted_f1": 0.465618124224754,
+    "log_loss": 0.9915265572698595,
     "class_labels": [
         "A",
         "D",
@@ -34,11 +34,8 @@
     ],
     "random_state": 42,
     "important_hyperparameters": {
-        "colsample_bytree": 0.8,
-        "learning_rate": 0.05,
-        "max_depth": 3,
-        "n_estimators": 100,
-        "subsample": 0.8,
-        "calibration_method": "sigmoid"
+        "max_iter": 1000,
+        "penalty": "l2",
+        "C": 1.0
     }
 }
