@@ -92,3 +92,10 @@ The dataset ends on **May 5, 2025** (`2025-05-05`). When a query date exceeds th
   - Unknown Team: Returns `400 Bad Request` containing `"Unknown home team"`.
   - Invalid Date format: Returns `400 Bad Request` containing `"Invalid match date"`.
   - Missing fields: Pydantic rejects request with `422 Unprocessable Entity`.
+
+---
+
+## 7. Latest Production Verification Results
+- **Probability Sanity Checks**: Verified across 10 distinct matches that output probabilities lie strictly in the $[0, 1]$ interval and sum to $1.0$. No extreme probabilities (e.g., 0% or 100%) were generated.
+- **Symmetry Verification**: Swap verified. Swapping home and away teams shifts feature values correctly and changes outcome probabilities accordingly to reflect home advantage.
+- **API and UI Audits**: Confirmed FastAPI and Streamlit warnings function properly. Pydantic schemas validate correctly.

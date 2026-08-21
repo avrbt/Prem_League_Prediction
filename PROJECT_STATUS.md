@@ -1,7 +1,7 @@
 # Project Status
 
 ## Current Phase
-Project Complete
+Project Completion & Handover Review
 
 ## Completed
 - Data Collection and Cleaning Notebooks (`01_data_collection.ipynb`, `02_data_cleaning.ipynb`)
@@ -21,18 +21,22 @@ Project Complete
 - Streamlit outcome predictor UI in `app/ui.py`
 - Automated test suites (FastAPI client, input validators, prediction pipeline) in `tests/`
 - Documentation suite (architecture flow, data dictionary, model card, decisions log, changelog, README)
+- **Model Explainability & Error Analysis** documented in `docs/model_explainability.md`
+- **Future Data Handling Review & Verification** documented in `docs/production_audit.md`
 
 ## Currently Working On
-- Production Prediction Audit Review
+- Handover and user review
 
 ## Production Prediction Audit
 - **Audit Status**: Completed, Verified, and Future Data Handling Review finalized.
 - **Tests Performed**:
   - Expanded and executed automated pytest suite (14/14 tests passed successfully).
-  - Verified probability bounds [0, 1] and sum constraint (~1.0).
+  - Verified probability bounds [0, 1] and sum constraint (~1.0) on 10 matchups.
   - Verified symmetry (Home vs Away swapping swaps probabilities logically).
-  - Verified future-date prediction timing (no time-series leakage, rest days compute correctly, league positions fallback to last completed season).
-  - Verified invalid input handling (ValueError raised for duplicate/unknown teams, invalid dates).
+  - Verified future-date prediction timing (no time-series leakage, rest days capped at 30, league positions fallback to 24/25).
+  - Verified invalid input handling (ValueError raised for duplicate/unknown teams, invalid dates) across API and UI.
+- **API Status**: All endpoints fully functional and tested.
+- **Streamlit Status**: Verified functionality including team selection, date picker, prediction display, and warnings.
 - **Issues Found**:
   - Future dates (e.g. 2026) generated out-of-distribution values for `RestDays` (e.g. 530 days) and stale form/standing features.
 - **Fixes Made**:
