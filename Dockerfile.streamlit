@@ -9,6 +9,7 @@ COPY src/ ./src/
 COPY app/ ./app/
 COPY models/ ./models/
 COPY data/processed/epl_clean.csv ./data/processed/epl_clean.csv
+COPY .streamlit/ ./.streamlit/
 
 EXPOSE 8501
 
