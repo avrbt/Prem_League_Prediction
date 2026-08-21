@@ -55,7 +55,7 @@ Due to severe class imbalance (Draws represent only ~24.6% of matches) and high 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 ### 2. Run Tests
