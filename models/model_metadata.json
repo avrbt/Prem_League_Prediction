@@ -1,7 +1,12 @@
 {
     "model_name": "Calibrated XGBoost Classifier",
-    "training_date": "2026-08-22 01:44:39",
-    "features_used": [
+    "model_type": "XGBClassifier + CalibratedClassifierCV",
+    "training_date": "2026-08-22 02:08:14",
+    "dataset_date_range": "2000-08-19 to 2025-05-05",
+    "number_training_samples": 7745,
+    "number_test_samples": 1635,
+    "feature_count": 15,
+    "feature_names": [
         "HomeForm",
         "AwayForm",
         "HomeGoalsAvg5",
@@ -18,14 +23,22 @@
         "HomeRestDays",
         "AwayRestDays"
     ],
-    "training_rows": 7745,
-    "test_rows": 1635,
-    "accuracy": 0.5174311926605505,
-    "macro_f1": 0.36875315118162605,
-    "log_loss": 1.0000465917252623,
+    "accuracy": 0.5187,
+    "macro_f1": 0.3697,
+    "weighted_f1": 0.44,
+    "log_loss": 1.0,
     "class_labels": [
         "A",
         "D",
         "H"
-    ]
+    ],
+    "random_state": 42,
+    "important_hyperparameters": {
+        "colsample_bytree": 0.8,
+        "learning_rate": 0.05,
+        "max_depth": 3,
+        "n_estimators": 100,
+        "subsample": 0.8,
+        "calibration_method": "sigmoid"
+    }
 }

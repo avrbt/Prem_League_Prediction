@@ -92,7 +92,10 @@ if st.button("Predict Match Outcome", use_container_width=True):
         # Run Prediction
         pred_res = predictor.predict(home_team, away_team, str(match_date))
         
-        st.success("Prediction complete!")
+        if pred_res.get("is_historical_simulation"):
+            st.warning(pred_res["warning"])
+        else:
+            st.success("Prediction complete!")
         
         # Display Prediction result
         prediction_map = {"H": "Home Win", "D": "Draw", "A": "Away Win"}

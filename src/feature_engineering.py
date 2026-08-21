@@ -43,6 +43,8 @@ def get_team_stats(team, match_date, df):
             
     last_match_date = team_df.iloc[0]["MatchDate"]
     rest_days = (pd.to_datetime(match_date) - last_match_date).days
+    # Cap rest days to a maximum of 30 days to prevent extreme out-of-distribution values
+    rest_days = min(rest_days, 30)
     
     # Pad if fewer than 5 matches are available (e.g. at the start of historical records)
     n = len(team_df)

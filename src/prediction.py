@@ -40,6 +40,9 @@ class MatchPredictor:
         outcome_map = {0: "A", 1: "D", 2: "H"}
         predicted_outcome = outcome_map[pred_class_idx]
         
+        max_date = self.df["MatchDate"].max()
+        is_simulated = pd.to_datetime(match_date) > max_date
+        
         return {
             "home_team": home_team,
             "away_team": away_team,
@@ -47,5 +50,7 @@ class MatchPredictor:
             "prediction": predicted_outcome,
             "home_win_probability": float(probs[2]),
             "draw_probability": float(probs[1]),
-            "away_win_probability": float(probs[0])
+            "away_win_probability": float(probs[0]),
+            "is_historical_simulation": is_simulated,
+            "warning": f"The match date is beyond the latest available match in the dataset ({max_date.date()}). Predictions are simulated using the final historical state." if is_simulated else None
         }

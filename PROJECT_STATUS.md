@@ -23,7 +23,23 @@ Project Complete
 - Documentation suite (architecture flow, data dictionary, model card, decisions log, changelog, README)
 
 ## Currently Working On
-- Handoff and review
+- Production Prediction Audit Review
+
+## Production Prediction Audit
+- **Audit Status**: Completed, Verified, and Future Data Handling Review finalized.
+- **Tests Performed**:
+  - Expanded and executed automated pytest suite (14/14 tests passed successfully).
+  - Verified probability bounds [0, 1] and sum constraint (~1.0).
+  - Verified symmetry (Home vs Away swapping swaps probabilities logically).
+  - Verified future-date prediction timing (no time-series leakage, rest days compute correctly, league positions fallback to last completed season).
+  - Verified invalid input handling (ValueError raised for duplicate/unknown teams, invalid dates).
+- **Issues Found**:
+  - Future dates (e.g. 2026) generated out-of-distribution values for `RestDays` (e.g. 530 days) and stale form/standing features.
+- **Fixes Made**:
+  - Capped `RestDays` features to a maximum of 30 days.
+  - Implemented `is_historical_simulation` warning flag/message in the prediction pipeline and API.
+  - Integrated warnings banner in the Streamlit UI for matches scheduled after `2025-05-05`.
+- **Remaining Issues**: None.
 
 ## Next Steps
 - Deploy FastAPI backend to a hosting environment (e.g. Render, AWS).

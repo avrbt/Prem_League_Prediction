@@ -27,6 +27,8 @@ class PredictionResponse(BaseModel):
     home_win_probability: float
     draw_probability: float
     away_win_probability: float
+    is_historical_simulation: bool
+    warning: str | None = None
 
 @app.get("/health")
 def health_check():
