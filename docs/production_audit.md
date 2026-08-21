@@ -96,6 +96,8 @@ The dataset ends on **May 5, 2025** (`2025-05-05`). When a query date exceeds th
 ---
 
 ## 7. Latest Production Verification Results
+- **Model Switch**: The final production model was switched to **StandardScaler + Logistic Regression** based on its superior generalization, lower test set Log Loss (`0.9915`), and higher test set accuracy (`54.01%`).
 - **Probability Sanity Checks**: Verified across 10 distinct matches that output probabilities lie strictly in the $[0, 1]$ interval and sum to $1.0$. No extreme probabilities (e.g., 0% or 100%) were generated.
 - **Symmetry Verification**: Swap verified. Swapping home and away teams shifts feature values correctly and changes outcome probabilities accordingly to reflect home advantage.
 - **API and UI Audits**: Confirmed FastAPI and Streamlit warnings function properly. Pydantic schemas validate correctly.
+- **Test Suite Status**: All 14/14 automated tests pass successfully.

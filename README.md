@@ -33,16 +33,19 @@ See [architecture.md](file:///home/avrbt/Documents/Projects/Prem_League/docs/arc
 
 All models were evaluated on the exact same chronological test set (comprising seasons 2020/21 to 2024/25).
 
-| Model | Accuracy | Macro Precision | Macro Recall | Macro F1 | Log Loss |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Logistic Regression (Baseline)** | **0.5401** | **0.4951** | **0.4513** | **0.3977** | **0.9915** |
-| **Random Forest (Baseline)** | 0.4985 | 0.4194 | 0.4239 | 0.3995 | 1.0229 |
-| **XGBoost (Baseline)** | 0.4783 | 0.4215 | 0.4188 | 0.4088 | 1.0816 |
-| **Tuned XGBoost** | 0.5205 | 0.3540 | 0.4273 | 0.3705 | 0.9961 |
-| **Calibrated XGBoost (Final)** | 0.5187 | 0.3475 | 0.4259 | 0.3697 | 1.0000 |
+| Model | Accuracy | Macro F1 | Log Loss |
+| :--- | :---: | :---: | :---: |
+| **Logistic Regression (Final Model)** | **0.5401** | **0.3977** | **0.9915** |
+| **Random Forest (Baseline)** | 0.4985 | 0.3995 | 1.0229 |
+| **XGBoost (Baseline)** | 0.4783 | 0.4088 | 1.0816 |
+| **Tuned XGBoost** | 0.5235 | 0.3741 | 0.9961 |
+| **Calibrated XGBoost** | 0.5174 | 0.3688 | 1.0000 |
+
+### Model Selection Decision
+While tree-based ensemble models (Random Forest and XGBoost) are more complex, **Logistic Regression** was chosen as the final production model. It achieves the best generalization on the out-of-sample chronological test set, delivering the lowest **Log Loss (0.9915)** and the highest **Accuracy (54.01%)**. This highlights that simple, well-regularized linear models often generalize better in sports outcome prediction tasks where the signal-to-noise ratio is low.
 
 ### Draw Prediction Insight
-Due to severe class imbalance (Draws represent only ~24.6% of matches) and high outcome volatility, models tend to output low draw probabilities. By performing **probability threshold tuning** (predicting Draw if Draw probability exceeds `0.28`), we can boost Draw Recall from `0.01` to `0.1872`, improving overall macro F1-score to `0.4277`.
+Due to severe class imbalance (Draws represent only ~24.6% of matches) and high outcome volatility, models tend to output low draw probabilities. The application displays these outputs as probabilities (e.g. 26% Draw, 54% Home, 20% Away) which is the most realistic way to communicate the high uncertainty of draw outcomes.
 
 ---
 

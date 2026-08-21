@@ -1,5 +1,6 @@
 import joblib
 import pandas as pd
+import numpy as np
 from src.config import MODEL_PATH, FEATURE_COLS
 from src.data_loader import load_historical_data
 from src.feature_engineering import generate_match_features
@@ -36,9 +37,12 @@ class MatchPredictor:
         probs = self.model.predict_proba(X)[0]
         
         # Predict outcome
-        pred_class_idx = self.model.predict(X)[0]
-        outcome_map = {0: "A", 1: "D", 2: "H"}
-        predicted_outcome = outcome_map[pred_class_idx]
+        pred_val = self.model.predict(X)[0]
+        if isinstance(pred_val, (int, np.integer)):
+            outcome_map = {0: "A", 1: "D", 2: "H"}
+            predicted_outcome = outcome_map[pred_val]
+        else:
+            predicted_outcome = str(pred_val)
         
         max_date = self.df["MatchDate"].max()
         is_simulated = pd.to_datetime(match_date) > max_date

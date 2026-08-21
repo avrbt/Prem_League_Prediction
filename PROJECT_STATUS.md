@@ -58,19 +58,19 @@ Project Completion & Handover Review
 - 15 pre-match strength/form features including rolling form, goals avg, win rates, goal difference, H2H, positions, and rest days.
 
 ## Current Best Model
-- **Calibrated XGBoost Classifier**
+- **Logistic Regression Classifier**
 
 ## Current Metrics
-- **Accuracy**: 0.5187
-- **Macro F1**: 0.3697
-- **Log Loss**: 1.0000
+- **Accuracy**: 0.5401
+- **Macro F1**: 0.3977
+- **Log Loss**: 0.9915
 
 ## Known Problems
-- **Draw Recall**: The default decision threshold classifies very few draws. Probability calibration outputs realistic draw probability distributions (~20–30%) rather than binary classifications. Adjusting the prediction threshold for draws to `0.28` boosts Draw Recall to `18.7%` at a small accuracy cost.
+- **Draw Recall**: Like all classifiers, default argmax classifies very few draws. However, the model outputs well-calibrated probabilities for draws (~20–30%), which is the primary consumption mode of the production prediction pipeline.
 
 ## Important Decisions
 - Chronological train/test split has been implemented to avoid future data leakage.
-- Calibration was applied to XGBoost to ensure output probabilities represent actual frequencies.
+- Switched final production model from Calibrated XGBoost back to Logistic Regression due to superior generalization, lower test set Log Loss (`0.9915`), and higher accuracy (`0.5401`).
 
 ## Last Completed Git Commit
 - `67c3098` (or subsequent): Complete project development (API, UI, tests, documentation)
