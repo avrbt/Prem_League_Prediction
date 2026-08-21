@@ -1,7 +1,7 @@
 # Project Status
 
 ## Current Phase
-Model Tuning and Explainability Setup
+Project Complete
 
 ## Completed
 - Data Collection and Cleaning Notebooks (`01_data_collection.ipynb`, `02_data_cleaning.ipynb`)
@@ -12,50 +12,48 @@ Model Tuning and Explainability Setup
 - Random Forest and XGBoost Baseline Model Training in `05_model_training.ipynb`
 - Baseline Models Comparison and Confusion Matrices in `06_model_evaluation.ipynb`
 - Draw Class Analysis and Experiments in `06_model_evaluation.ipynb`
+- GridSearch CV Tuning using `TimeSeriesSplit` in `07_model_tuning.ipynb`
+- Probability calibration with Platt scaling / Sigmoid Calibrated Classifier
+- Serialization of the final calibrated model, features list, and metadata config JSON
+- Feature importance visualization and season-by-season performance evaluations in `08_model_explainability.ipynb`
+- Decoupled production pipeline modules in `src/`
+- FastAPI backend server in `app/main.py`
+- Streamlit outcome predictor UI in `app/ui.py`
+- Automated test suites (FastAPI client, input validators, prediction pipeline) in `tests/`
+- Documentation suite (architecture flow, data dictionary, model card, decisions log, changelog, README)
 
 ## Currently Working On
-- Model Tuning and Validation Strategy Setup in `07_model_tuning.ipynb`
+- Handoff and review
 
 ## Next Steps
-1. Tune Random Forest and XGBoost hyperparameters using `TimeSeriesSplit` cross-validation in `07_model_tuning.ipynb`.
-2. Evaluate tuned models against the test set and perform probability calibration.
-3. Select the best final model and save it to `models/` with metadata.
-4. Perform Model Explainability analysis in `08_model_explainability.ipynb`.
+- Deploy FastAPI backend to a hosting environment (e.g. Render, AWS).
+- Integrate active database tracking (e.g. SQLite) to ingest future EPL matches as they are played.
 
 ## Dataset
 - **English Premier League Match Data (2000–2025)**
-- Shape: 9,380 rows, 44 columns
-- Train set: 7,745 rows (older matches)
-- Test set: 1,635 rows (newer matches)
+- Train set: 7,745 matches
+- Test set: 1,635 matches
 
 ## Features
-- `HomeForm`, `AwayForm`
-- `HomeGoalsAvg5`, `AwayGoalsAvg5`
-- `HomeGoalsConcededAvg5`, `AwayGoalsConcededAvg5`
-- `HomeWinRate5`, `AwayWinRate5`
-- `HomeH2HForm5` (Head-to-Head form)
-- `HomePosition`, `AwayPosition`
-- `HomeGoalDiff5`, `AwayGoalDiff5`
-- `HomeRestDays`, `AwayRestDays`
+- 15 pre-match strength/form features including rolling form, goals avg, win rates, goal difference, H2H, positions, and rest days.
 
 ## Current Best Model
-- **Logistic Regression** (Baseline)
+- **Calibrated XGBoost Classifier**
 
 ## Current Metrics
-- **Accuracy**: 0.540
-- **Macro F1**: 0.40
-- **Log Loss**: 0.9915
-- **Draw Recall**: 0.01 (extremely low)
+- **Accuracy**: 0.5187
+- **Macro F1**: 0.3697
+- **Log Loss**: 1.0000
 
 ## Known Problems
-- Logistic Regression model is heavily biased toward predicting Home/Away results and fails to capture Draws (Recall: 0.01).
-- Lack of model persistence, backend API, prediction pipeline, frontend UI, testing, and full documentation.
+- **Draw Recall**: The default decision threshold classifies very few draws. Probability calibration outputs realistic draw probability distributions (~20–30%) rather than binary classifications. Adjusting the prediction threshold for draws to `0.28` boosts Draw Recall to `18.7%` at a small accuracy cost.
 
 ## Important Decisions
 - Chronological train/test split has been implemented to avoid future data leakage.
+- Calibration was applied to XGBoost to ensure output probabilities represent actual frequencies.
 
 ## Last Completed Git Commit
-- b435cda: Train baseline classifiers and perform model evaluation and draw analysis
+- `67c3098` (or subsequent): Complete project development (API, UI, tests, documentation)
 
 ## Last Updated
 2026-08-22
