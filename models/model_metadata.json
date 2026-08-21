@@ -1,0 +1,31 @@
+{
+    "model_name": "Calibrated XGBoost Classifier",
+    "training_date": "2026-08-22 01:44:39",
+    "features_used": [
+        "HomeForm",
+        "AwayForm",
+        "HomeGoalsAvg5",
+        "AwayGoalsAvg5",
+        "HomeGoalsConcededAvg5",
+        "AwayGoalsConcededAvg5",
+        "HomeWinRate5",
+        "AwayWinRate5",
+        "HomeH2HForm5",
+        "HomePosition",
+        "AwayPosition",
+        "HomeGoalDiff5",
+        "AwayGoalDiff5",
+        "HomeRestDays",
+        "AwayRestDays"
+    ],
+    "training_rows": 7745,
+    "test_rows": 1635,
+    "accuracy": 0.5174311926605505,
+    "macro_f1": 0.36875315118162605,
+    "log_loss": 1.0000465917252623,
+    "class_labels": [
+        "A",
+        "D",
+        "H"
+    ]
+}

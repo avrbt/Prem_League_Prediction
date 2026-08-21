@@ -1,7 +1,7 @@
 # Project Status
 
 ## Current Phase
-Project Audit and Baseline Model Comparison Setup
+Model Tuning and Explainability Setup
 
 ## Completed
 - Data Collection and Cleaning Notebooks (`01_data_collection.ipynb`, `02_data_cleaning.ipynb`)
@@ -9,16 +9,18 @@ Project Audit and Baseline Model Comparison Setup
 - Feature Engineering Notebook (`04_feature_engineering.ipynb`)
 - Train/Test Split (Chronological, no leakage)
 - Logistic Regression Baseline Model Training in `05_model_training.ipynb`
+- Random Forest and XGBoost Baseline Model Training in `05_model_training.ipynb`
+- Baseline Models Comparison and Confusion Matrices in `06_model_evaluation.ipynb`
+- Draw Class Analysis and Experiments in `06_model_evaluation.ipynb`
 
 ## Currently Working On
-- Project Audit
-- Setup of Random Forest and XGBoost baseline models in `05_model_training.ipynb`
+- Model Tuning and Validation Strategy Setup in `07_model_tuning.ipynb`
 
 ## Next Steps
-1. Implement Random Forest baseline model (no tuning).
-2. Implement XGBoost/Gradient Boosting baseline model (no tuning).
-3. Create model comparison table and confusion matrices for baseline models.
-4. Perform Draw class analysis.
+1. Tune Random Forest and XGBoost hyperparameters using `TimeSeriesSplit` cross-validation in `07_model_tuning.ipynb`.
+2. Evaluate tuned models against the test set and perform probability calibration.
+3. Select the best final model and save it to `models/` with metadata.
+4. Perform Model Explainability analysis in `08_model_explainability.ipynb`.
 
 ## Dataset
 - **English Premier League Match Data (2000–2025)**
@@ -53,7 +55,7 @@ Project Audit and Baseline Model Comparison Setup
 - Chronological train/test split has been implemented to avoid future data leakage.
 
 ## Last Completed Git Commit
-- Initial commit / project setup from previous stage.
+- b435cda: Train baseline classifiers and perform model evaluation and draw analysis
 
 ## Last Updated
 2026-08-22
