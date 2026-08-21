@@ -1,7 +1,7 @@
 # Project Status
 
 ## Current Phase
-Project Completion & Handover Review
+Deployment Preparation
 
 ## Completed
 - Data Collection and Cleaning Notebooks (`01_data_collection.ipynb`, `02_data_cleaning.ipynb`)
@@ -23,6 +23,8 @@ Project Completion & Handover Review
 - Documentation suite (architecture flow, data dictionary, model card, decisions log, changelog, README)
 - **Model Explainability & Error Analysis** documented in `docs/model_explainability.md`
 - **Future Data Handling Review & Verification** documented in `docs/production_audit.md`
+- **Model Selection Validation** documented in `docs/final_model_decision.md`
+- **Production Deployment Configuration**: Created `Dockerfile.api`, `Dockerfile.streamlit`, `.dockerignore`, froze `requirements.txt`, and documented deployment steps in `docs/deployment.md`.
 
 ## Currently Working On
 - Handover and user review

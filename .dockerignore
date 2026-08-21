@@ -1,0 +1,12 @@
+.git
+.venv
+venv
+__pycache__
+.pytest_cache
+notebooks/
+data/raw/
+data/interim/
+data/processed/train.csv
+data/processed/test.csv
+data/processed/epl_features_step3.csv
+tests/

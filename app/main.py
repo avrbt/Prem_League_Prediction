@@ -32,9 +32,7 @@ class PredictionResponse(BaseModel):
 
 @app.get("/health")
 def health_check():
-    if predictor is None:
-        raise HTTPException(status_code=500, detail="Model predictor is not initialized.")
-    return {"status": "healthy", "model": "Calibrated XGBoost Classifier"}
+    return {"status": "healthy"}
 
 @app.get("/teams")
 def get_teams():

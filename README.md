@@ -75,6 +75,13 @@ API Documentation will be available at `http://127.0.0.1:8000/docs`.
 ```
 Open your browser at the local address printed by Streamlit.
 
+### 5. Deployment with Docker
+For independent production deployment, Dockerfiles are configured:
+- **FastAPI API**: `Dockerfile.api`
+- **Streamlit UI**: `Dockerfile.streamlit`
+
+See [deployment.md](file:///home/avrbt/Documents/Projects/Prem_League/docs/deployment.md) for full hosting platform guides.
+
 ---
 
 ## 📁 Repository Structure
